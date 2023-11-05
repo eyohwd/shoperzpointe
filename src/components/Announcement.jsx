@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
 height: 30px;
-background-color: teal;
+background-color: purple;
 color: white;
 display: flex;
 align-items: center;
@@ -15,7 +15,7 @@ font-weight: 500;
 const Announcement = () => {
   return (
     <Container>
-      Super Deal! Free Shipping on Orders Over $50
+      Shoperpoint Your best online store with discounted prices
     </Container>
   );
 }

@@ -37,15 +37,15 @@ const Input = styled.input`
 const Button = styled.button`
    flex: 1;
    border: none;
-   background-color: teal;
+   background-color: purple;
    color: white;
 `;
 
 const NewsLetter = () => {
   return (
     <Container>
-      <Title>News Letter</Title>
-      <Desc>Get timely update from your favourite products.</Desc>
+      <Title>Our Mail Update</Title>
+      <Desc>Get more update of your favourite products.</Desc>
       <InputContainer>
         <Input placeholder="Your email"/>
         <Button>

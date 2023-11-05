@@ -77,7 +77,7 @@ const Navbar = () => {
           <Search style = {{color:"gray", fontSize: 16}}/>
         </SearchContainer>
         </Left>
-      <Center><Logo>LEKHO.</Logo></Center>
+      <Center><Logo>SHOPERPOINT.</Logo></Center>
       <Right>
       <Link to="/">
       <MenuItem>HOME</MenuItem>

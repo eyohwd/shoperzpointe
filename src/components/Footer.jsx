@@ -4,6 +4,7 @@ import {mobile} from "../responsive"
 
 const Container = styled.div`
    display: flex;
+   background-color: violet;
    ${mobile({flexDirection: "column"})}
 `;
 const Left = styled.div`
@@ -72,9 +73,9 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>LEKHO</Logo>
+        <Logo>Shoperpoint</Logo>
         <Desc>
-            The Product you buy from Lekho shop are of very high quality.
+            The Product you buy from Shoperpoint are of very high quality.
             You get velue for your money spent and our services of excellent.
              Enjoy your shopping with us.
         </Desc>
