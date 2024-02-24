@@ -56,7 +56,7 @@ import { useDispatch, useSelector } from "react-redux";
     cursor: pointer;
     margin-bottom: 10px;
     &:disabled{
-      color: green;
+      background-color: green;
       cursor: not-allowed;
     }
  `;

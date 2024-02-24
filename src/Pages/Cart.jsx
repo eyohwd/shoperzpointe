@@ -153,6 +153,7 @@ const Button = styled.button`
 
 const Cart = () => {
    const [stripeToken, setStripeToken] = useState(null)
+   const [state, setState] = useState(null)
    const cart = useSelector((state)=>state.cart)
    const navigate = useNavigate()
     const onToken = (token) => {
@@ -165,10 +166,9 @@ const Cart = () => {
         const res = await userRequest.post("/checkout/payment", {
          tokenId: stripeToken.id,
          amount: cart.total * 100,
-         
-         
         })
-        navigate("/success", {data: res.data})
+        setState(res)
+        navigate("/success", {state:{data: res.data}})
          } catch (error) {
              console.log(error)
          }
@@ -176,10 +176,12 @@ const Cart = () => {
       }
     stripeToken &&  makeRequest()
     }, [stripeToken, cart.total, navigate])
+
+    console.log(state)
     
   return (
     <Container>
-      <Navbar/>
+      <Navbar state={state}/>
       <Announcement/>
       <Wrapper>
         <Title>YOUR BAG<Link to="/"><Hmpage><Home style={{fontSize:"20px"}}/>Home</Hmpage></Link></Title>
@@ -235,7 +237,7 @@ const Cart = () => {
                     <SummaryItemText >Total</SummaryItemText>
                     <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                 </SummaryItem>
-                <StripeCheckout
+                {stripeToken ? (<span>Processing. Please wait...</span>) : (<StripeCheckout
                 name = "Shoperpoint"
                 image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcAdbnIBGS-MGfzF26AmoCyvko0WVbua1P-KN4cheriw&s"
                  billingAddress
@@ -246,7 +248,8 @@ const Cart = () => {
                  stripeKey={KEY}
                 >
                 <Button>CHECKOUT NOW</Button>
-                </StripeCheckout>
+                </StripeCheckout>)}
+                
             </Summary>
         </Bottom>
       </Wrapper>

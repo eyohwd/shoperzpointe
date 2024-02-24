@@ -4,8 +4,10 @@ import React from 'react';
 import styled from 'styled-components';
 import {mobile} from "../responsive"
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
+import ShowOnLogin from './hiddenLinks';
+import { ShowOnLogout } from './hiddenLinks';
 
 
 const Container = styled.div`
@@ -61,10 +63,36 @@ font-size: 14px;
 cursor: pointer;
 margin-left: 25px;
 ${mobile({fontSize: "9px", marginLeft: "5px"})}
+&:hover{
+  border-bottom: 1px solid blue;
+}
+`;
+
+
+const Button = styled.button`
+
+border: none;
+background-color: teal;
+margin-left: 25px;
+padding: 5px;
+color: white;
+cursor: pointer;
+text-align: center;
+&:hover{
+background-color: green;}
+${mobile({fontSize: "9px", marginLeft: "5px", padding: "0px 2px", height: "15px"})}
 
 `;
 
+
 const Navbar = () => {
+  const dispatch = useDispatch()
+
+  const logoutUser = () => {
+    localStorage.removeItem("user")
+    dispatch(logout())
+
+  }
  const quantity = useSelector((state)=>state.cart.quantity)
   
   return (
@@ -79,15 +107,28 @@ const Navbar = () => {
         </Left>
       <Center><Logo>SHOPERPOINT.</Logo></Center>
       <Right>
-      <Link to="/">
+      <Link to="/" style={{textDecoration:"none"}}>
       <MenuItem>HOME</MenuItem>
       </Link>
-      <Link to="/register">
+      
+      <ShowOnLogout>
+      <Link to="/register" style={{textDecoration:"none"}}>
       <MenuItem>REGISTER</MenuItem>
       </Link>
-      <Link to="/login">
+      </ShowOnLogout>
+
+      <ShowOnLogout>
+      <Link to="/login" style={{textDecoration:"none"}}>
       <MenuItem>SIGN IN</MenuItem>
       </Link>
+      </ShowOnLogout>
+      
+      <ShowOnLogin>
+      <Button onClick={logoutUser}>
+      LOGOUT
+      </Button>
+      </ShowOnLogin>
+     
       <Link to="/cart">
         <MenuItem>
         <Badge badgeContent={quantity} color="primary">

@@ -25,7 +25,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path="/" element={ <Home/>} />
-          <Route path="/register" element={<RequireAuth><Register/></RequireAuth>} />
+          <Route path="/register" element={user ? <Navigate to="/"/> : <Register/>} />
           <Route path="/login" element={user ? <Navigate to="/"/> : <Login/>} />
           <Route path="/products/:category" element={<ProductList/>} />
           <Route path="/cart" element={<Cart/>} />
